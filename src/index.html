@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Claude Usage</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+  <header><div class="brand">Claude <span>Pro / Max</span></div><button id="refresh" title="Refresh" aria-label="Refresh">↻</button></header>
+  <nav aria-label="Main navigation"><button class="nav-button active" id="usage-tab" type="button">Usage</button><button class="nav-button" id="settings-tab" type="button">Settings</button></nav>
+  <section id="usage-page" class="page">
+    <h1 id="headline">Your Claude usage</h1>
+    <section class="meter"><div class="label"><span id="session-label">Current session</span><strong id="five-value">—</strong></div><div class="bar"><i id="five-bar"></i></div><small id="five-reset">5-hour window</small></section>
+    <section class="meter"><div class="label"><span id="week-label">This week</span><strong id="week-value">—</strong></div><div class="bar"><i id="week-bar"></i></div><small id="week-reset">7-day window</small></section>
+    <footer id="status">Connecting…</footer>
+  </section>
+  <section id="settings-page" class="page" hidden>
+    <h1 id="settings-heading">Settings</h1>
+    <form id="settings-form">
+      <label class="field"><span id="language-label">Language</span><select id="language"><option value="en">English</option><option value="pt">Português</option><option value="es">Español</option></select></label>
+      <label class="field"><span id="interval-label">Refresh interval</span><div class="interval"><input id="interval-value" type="number" min="30" max="3600" step="1" value="5"><select id="interval-unit"><option value="min">minutes</option><option value="sec">seconds</option></select></div></label>
+      <small id="interval-help" class="help">At least 30 seconds. Short intervals may be rate limited.</small>
+      <label class="field"><span id="tray-label">Tray indicator</span><select id="tray-display"><option value="session">Session usage</option><option value="week">Weekly usage</option><option value="both">Session and weekly</option></select></label>
+      <label class="check-field"><input id="launch-login" type="checkbox"><span id="launch-label">Start when I sign in</span></label>
+      <div class="settings-actions"><span id="save-status" role="status"></span><button id="save-settings" class="primary" type="submit">Save settings</button></div>
+    </form>
+  </section>
+</main><script src="preload.js"></script><script src="renderer.js"></script></body></html>

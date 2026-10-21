@@ -1,0 +1,10 @@
+{
+  "name": "claude-usage-tray",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Claude usage in the system tray (Rust + Tauri)",
+  "scripts": {
+    "start": "cd src-tauri && cargo tauri dev",
+    "build": "cd src-tauri && cargo tauri build"
+  }
+}
