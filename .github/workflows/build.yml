@@ -17,10 +17,13 @@ jobs:
         include:
           - os: macos-latest
             name: macos
+            bundles: app
           - os: windows-latest
             name: windows
+            bundles: msi
           - os: ubuntu-24.04
             name: linux
+            bundles: deb
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +36,7 @@ jobs:
       - name: Install Tauri CLI
         run: cargo install tauri-cli --version "^2" --locked
       - name: Build application
-        run: cargo tauri build
+        run: cargo tauri build --bundles ${{ matrix.bundles }}
         working-directory: src-tauri
       - uses: actions/upload-artifact@v4
         with:

@@ -24,7 +24,7 @@ Os pacotes ficam em `src-tauri/target/release/bundle/`.
 
 O mesmo código é usado nos três sistemas. Cada pacote deve ser compilado no sistema correspondente, que fornece as ferramentas e a WebView nativa necessárias. O workflow em `.github/workflows/build.yml` compila e publica os artefatos da execução para macOS, Windows e Ubuntu; inicie-o manualmente pela aba **Actions** do GitHub ou faça push do projeto.
 
-No Windows, instale o Rust, o Microsoft C++ Build Tools e o WebView2. No Ubuntu/Debian, instale as dependências do Tauri:
+O workflow gera `.app` no macOS, `.msi` no Windows e `.deb` no Ubuntu. No Windows, instale o Rust, o Microsoft C++ Build Tools e o WebView2. No Ubuntu/Debian, instale as dependências do Tauri:
 
 ```sh
 sudo apt install libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
@@ -39,7 +39,7 @@ O app lê `~/.claude/.credentials.json` ou `CLAUDE_CODE_OAUTH_TOKEN`; no macOS t
 ## Funcionalidades
 
 - Uso da janela de 5 horas e da semana de 7 dias.
-- Atualização configurável de 30 segundos a 60 minutos.
+- Atualização configurável de 5 a 60 minutos. O endpoint de uso OAuth não publica uma cota fixa de consultas; o limite mínimo de 5 minutos é uma escolha conservadora do app, não uma garantia contra respostas 429.
 - Idiomas inglês, português e espanhol.
 - Indicador de sessão, semana ou ambos na bandeja.
 - Inicialização junto com a sessão do usuário.

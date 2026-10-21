@@ -19,6 +19,7 @@ use tauri::{
 use tauri_plugin_autostart::ManagerExt as AutostartManagerExt;
 
 const USAGE_URL: &str = "https://api.anthropic.com/api/oauth/usage";
+const MIN_REFRESH_SECONDS: u64 = 300;
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", default)]
@@ -33,7 +34,7 @@ impl Default for Settings {
     fn default() -> Self {
         Self {
             language: "en".into(),
-            refresh_seconds: 300,
+            refresh_seconds: MIN_REFRESH_SECONDS,
             launch_at_login: false,
             tray_display: "session".into(),
         }
@@ -61,7 +62,7 @@ fn normalized_settings(mut value: Settings) -> Settings {
     if !["en", "pt", "es"].contains(&value.language.as_str()) {
         value.language = "en".into();
     }
-    value.refresh_seconds = value.refresh_seconds.clamp(30, 3600);
+    value.refresh_seconds = value.refresh_seconds.clamp(MIN_REFRESH_SECONDS, 3600);
     if !["session", "week", "both"].contains(&value.tray_display.as_str()) {
         value.tray_display = "session".into();
     }
@@ -367,6 +368,7 @@ fn main() {
             let icon = tauri::image::Image::from_bytes(include_bytes!("../icons/tray.png"))?;
             TrayIconBuilder::with_id("main")
                 .icon(icon)
+                .icon_as_template(cfg!(target_os = "macos"))
                 .tooltip("Claude Usage")
                 .menu(&menu)
                 .show_menu_on_left_click(false)
