@@ -32,6 +32,17 @@ sudo apt install libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev
 
 Então, dentro de `src-tauri/`, use `cargo tauri dev` e `cargo tauri build`.
 
+## Publicar uma versão
+
+O GitHub Actions cria uma Release com os instaladores quando recebe uma tag `v*`. Atualize a versão em `src-tauri/Cargo.toml` e `src-tauri/tauri.conf.json`, faça commit e push, e então crie e envie a tag correspondente. Por exemplo:
+
+```sh
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+A execução compila os pacotes para macOS, Windows e Ubuntu e os anexa à Release dessa versão.
+
 ## Dados e credenciais
 
 O app lê `~/.claude/.credentials.json` ou `CLAUDE_CODE_OAUTH_TOKEN`; no macOS também tenta o item `Claude Code-credentials` do Chaves. Ele consulta `GET /api/oauth/usage` diretamente em `api.anthropic.com`. Preferências e último uso ficam no diretório de configuração do aplicativo. O endpoint OAuth de uso não é uma API pública documentada e pode mudar.
