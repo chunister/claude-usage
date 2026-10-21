@@ -25,6 +25,10 @@
   "bundle": {
     "active": true,
     "targets": "all",
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.ico"
+    ],
     "category": "Utility",
     "shortDescription": "Claude usage in the system tray"
   }
