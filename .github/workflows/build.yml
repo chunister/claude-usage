@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-latest
+          - os: macos-15-intel
             name: macos
             bundles: app
           - os: windows-latest
@@ -36,13 +36,20 @@ jobs:
       - name: Install Tauri CLI
         run: cargo install tauri-cli --version "^2" --locked
       - name: Build application
+        if: runner.os != 'macOS'
         run: cargo tauri build --bundles ${{ matrix.bundles }}
+        working-directory: src-tauri
+      - name: Build universal macOS application
+        if: runner.os == 'macOS'
+        run: |
+          rustup target add aarch64-apple-darwin x86_64-apple-darwin
+          cargo tauri build --bundles app --target universal-apple-darwin
         working-directory: src-tauri
       - name: Prepare macOS release package
         if: runner.os == 'macOS'
         run: |
           mkdir -p release-files
-          ditto -c -k --sequesterRsrc --keepParent "src-tauri/target/release/bundle/macos/Claude Usage.app" "release-files/Claude-Usage-macos.zip"
+          ditto -c -k --sequesterRsrc --keepParent "src-tauri/target/universal-apple-darwin/release/bundle/macos/Claude Usage.app" "release-files/Claude-Usage-macos-universal.zip"
         shell: bash
       - name: Prepare Windows release package
         if: runner.os == 'Windows'

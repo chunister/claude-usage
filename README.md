@@ -24,7 +24,7 @@ Os pacotes ficam em `src-tauri/target/release/bundle/`.
 
 O mesmo código é usado nos três sistemas. Cada pacote deve ser compilado no sistema correspondente, que fornece as ferramentas e a WebView nativa necessárias. O workflow em `.github/workflows/build.yml` compila e publica os artefatos da execução para macOS, Windows e Ubuntu; inicie-o manualmente pela aba **Actions** do GitHub ou faça push do projeto.
 
-O workflow gera `.app` no macOS, `.msi` no Windows e `.deb` no Ubuntu. No Windows, instale o Rust, o Microsoft C++ Build Tools e o WebView2. No Ubuntu/Debian, instale as dependências do Tauri:
+O workflow gera um `.app` universal para Macs Intel e Apple Silicon, `.msi` no Windows e `.deb` no Ubuntu. No Windows, instale o Rust, o Microsoft C++ Build Tools e o WebView2. No Ubuntu/Debian, instale as dependências do Tauri:
 
 ```sh
 sudo apt install libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
@@ -37,8 +37,8 @@ Então, dentro de `src-tauri/`, use `cargo tauri dev` e `cargo tauri build`.
 O GitHub Actions cria uma Release com os instaladores quando recebe uma tag `v*`. Atualize a versão em `src-tauri/Cargo.toml` e `src-tauri/tauri.conf.json`, faça commit e push, e então crie e envie a tag correspondente. Por exemplo:
 
 ```sh
-git tag v0.2.0
-git push origin v0.2.0
+git tag v0.2.2
+git push origin v0.2.2
 ```
 
 A execução compila os pacotes para macOS, Windows e Ubuntu e os anexa à Release dessa versão.
