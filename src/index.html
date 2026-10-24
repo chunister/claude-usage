@@ -2,12 +2,19 @@
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Claude Usage</title><link rel="stylesheet" href="style.css"></head>
 <body><main>
   <header><div class="brand">Claude <span>Pro / Max</span></div><button id="refresh" title="Refresh" aria-label="Refresh">↻</button></header>
-  <nav aria-label="Main navigation"><button class="nav-button active" id="usage-tab" type="button">Usage</button><button class="nav-button" id="settings-tab" type="button">Settings</button></nav>
+  <nav aria-label="Main navigation"><button class="nav-button active" id="usage-tab" type="button">Usage</button><button class="nav-button" id="dashboard-tab" type="button">Dashboard</button><button class="nav-button" id="settings-tab" type="button">Settings</button></nav>
   <section id="usage-page" class="page">
     <h1 id="headline">Your Claude usage</h1>
     <section class="meter"><div class="label"><span id="session-label">Current session</span><strong id="five-value">—</strong></div><div class="bar"><i id="five-bar"></i></div><small id="five-reset">5-hour window</small></section>
     <section class="meter"><div class="label"><span id="week-label">This week</span><strong id="week-value">—</strong></div><div class="bar"><i id="week-bar"></i></div><small id="week-reset">7-day window</small></section>
     <footer id="status">Connecting…</footer>
+  </section>
+  <section id="dashboard-page" class="page" hidden>
+    <h1 id="dashboard-heading">Usage history</h1>
+    <label class="period-field"><span id="period-label">Period</span><select id="history-period"></select></label>
+    <div class="summary-grid"><article class="summary-card"><span id="dash-session-label">Session now</span><strong id="dash-session">—</strong></article><article class="summary-card"><span id="dash-week-label">Week now</span><strong id="dash-week">—</strong></article></div>
+    <div class="chart-card"><div class="chart-heading"><strong id="chart-title">Utilization history</strong><span id="history-count">0 samples</span></div><div id="usage-chart" class="usage-chart"></div><div class="chart-legend"><span><i class="legend-dot session-dot"></i><span id="legend-session">Session (5h)</span></span><span><i class="legend-dot week-dot"></i><span id="legend-week">Week (7d)</span></span></div></div>
+    <div class="history-tools"><p id="history-note" class="history-note">History is collected on this device from now on.</p><div class="history-actions"><button id="export-history" class="secondary" type="button">Export history</button><button id="import-history" class="secondary" type="button">Import history</button><input id="history-file" type="file" accept="application/json,.json" hidden></div><small id="history-status" role="status"></small></div>
   </section>
   <section id="settings-page" class="page" hidden>
     <h1 id="settings-heading">Settings</h1>

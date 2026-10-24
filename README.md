@@ -45,7 +45,7 @@ A execução compila os pacotes para macOS, Windows e Ubuntu e os anexa à Relea
 
 ## Dados e credenciais
 
-O app lê `~/.claude/.credentials.json` ou `CLAUDE_CODE_OAUTH_TOKEN`; no macOS também tenta o item `Claude Code-credentials` do Chaves. Ele consulta `GET /api/oauth/usage` diretamente em `api.anthropic.com`. Preferências e último uso ficam no diretório de configuração do aplicativo. O endpoint OAuth de uso não é uma API pública documentada e pode mudar.
+O app lê `~/.claude/.credentials.json` ou `CLAUDE_CODE_OAUTH_TOKEN`; no macOS também tenta o item `Claude Code-credentials` do Chaves. Ele consulta `GET /api/oauth/usage` diretamente em `api.anthropic.com`. Preferências, último uso e histórico ficam no diretório de configuração do aplicativo. O histórico local é mantido sem prazo enquanto o app estiver em execução e conseguir atualizar os dados. Na aba **Painel**, filtre por 1–7 dias, 1–12 meses, 1–5 anos ou todo o histórico; use **Exportar histórico** e **Importar histórico** para transferi-lo entre máquinas. Amostras duplicadas são unificadas pelo horário. O endpoint OAuth de uso não é uma API pública documentada e pode mudar.
 
 ## Funcionalidades
 
@@ -55,3 +55,4 @@ O app lê `~/.claude/.credentials.json` ou `CLAUDE_CODE_OAUTH_TOKEN`; no macOS t
 - Indicador de sessão, semana ou ambos na bandeja.
 - Inicialização junto com a sessão do usuário.
 - Cache local do último resultado.
+- Histórico local sem limite de tempo, com filtros, importação e exportação em JSON.
