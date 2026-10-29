@@ -1,6 +1,6 @@
 [package]
 name = "claude-usage-tray"
-version = "0.2.2"
+version = "0.2.3"
 description = "Claude usage in the system tray"
 edition = "2021"
 
