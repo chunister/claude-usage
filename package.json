@@ -1,6 +1,6 @@
 {
   "name": "claude-usage-tray",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": true,
   "description": "Claude usage in the system tray (Rust + Tauri)",
   "scripts": {
